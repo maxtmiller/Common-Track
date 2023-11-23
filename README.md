@@ -1,2 +1,2 @@
-# cs50
-Code from cs50 course.
+# Common App Organizer
+This was my final project for the CS50x Harvard Course.
