@@ -1,0 +1,557 @@
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+.dropdown-options {
+    display: none;
+    position: absolute;
+    overflow: auto;
+}
+
+#symbol {
+	appearance: menulist-button;
+}
+
+a {
+    text-decoration: none;
+}
+
+.icon {
+    position: relative;
+    font-size: 35px;
+    display: inline-block;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    color: #000000;
+    text-decoration: none;
+}
+
+#Footer {
+    width: 100%;
+    height: 200px;
+}
+
+#FooterLogo {
+    border-radius: 25px;
+}
+
+#SocialSpacing {
+    color: #000000;
+}
+
+.colF {
+    width: 64px;
+}
+
+.colR {
+    width: 200px;
+}
+
+#CopyR {
+    margin-top: -84.5px;
+    max-width: 1320px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 11.5px;
+    background-color: black;
+    background: black;
+    color: black;
+}
+
+.logIn {
+    color: #1084e3;
+    border: 3px solid #1084e3;
+    background-color : transparent;
+    box-shadow: rgba(100, 100, 110, 0.4) 0px 7px 29px 0px;
+    border-radius: 10px;
+    font-size: 20px;
+    width: 110px;
+    height: 45px;
+}
+
+.logIn:hover {
+
+    color: #fff;
+    background-color: #1084e3;
+    border-radius: 10px;
+
+}
+
+.logOut {
+
+    color: #E1332D;
+    border: 3px solid #E1332D;
+    background-color : transparent;
+    box-shadow: rgba(100, 100, 110, 0.4) 0px 7px 29px 0px;
+    border-radius: 10px;
+    width: 110px;
+    height: 45px;
+}
+
+.logOut:hover {
+
+    color: #fff;
+    background-color: #E1332D;
+    border-radius: 10px;
+
+}
+
+
+nav {
+    box-shadow: 0px 1px 10px gray;
+}
+
+.nav-log {
+    font-size: 20px;
+    color: #000000;
+}
+
+#badEvent {
+    color: #E1332D;
+}
+
+#goodEvent {
+    color: #008000;
+}
+
+#startBorder {
+    margin-left: auto;
+    margin-right: auto;
+    border-width:2px;
+    border-style:solid;
+    border-color:black;
+    border-radius: 10px;
+    min-width: 300px;
+    max-width: 500px;
+    width: 40%;
+}
+
+#line {
+    width: 40%;
+    text-align: left;
+    height: 1.5px;
+    float: left;
+    color: black;
+}
+
+.loginSep {
+    overflow-y: hidden;
+    width: 84.46%;
+    margin-top: 10px;
+}
+
+.w-fit {
+    width: 84.46%;
+}
+
+.orDiv {
+    margin-top: 4px;
+    margin-left: 5.672%;
+    margin-right: 5.672%;
+    width: 8.656%;
+    color: black;
+    float: left;
+}
+
+.or {
+    color:black;
+}
+
+.loginButton {
+    height: 38px;
+    width: 84.46%;
+    border-radius: 5px;
+}
+
+.signButton {
+    margin-bottom: 5px;
+    Text-Decoration: None !important;
+}
+
+.backButton {
+    border-radius: 5px;
+    width: 75px;
+    border-color: #e02626;
+    background: #e02626;
+}
+
+.backButtonL {
+    border-radius: 5px;
+    width: 75px;
+}
+
+.backButtonR {
+    border-radius: 5px;
+    width: 75px;
+}
+
+.backButton:hover {
+    border-radius: 5px;
+    width: 75px;
+    border-color: #d13d3d;
+    background: #d13d3d;
+}
+
+.buttonDisabled {
+    Cursor:text !important;
+    Text-Decoration: None !important;
+ }
+
+ .msgSpace {
+    margin-top: 10px;
+ }
+
+ .navPos {
+    position: fixed;
+    width: 100%;
+    min-width: 1250px;
+    z-index: 1000;
+ }
+
+.table {
+    width: 90%;
+    border-collapse: collapse;
+    border: 2px solid #ddd;
+}
+
+.form-contro {
+    display: block;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+#deadlineSect {
+    display: none;
+}
+
+#errorMessage {
+    display: none;
+    color: red;
+}
+
+.horizontal-stack {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.horizontal-stack-flash {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.horizontal-stack-w {
+    width: 84.46%;
+    max-width: 84.46%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.horizontal-stack-w-calendar {
+    width: 45%;
+    max-width: 45%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.horizontal-stack-w-my {
+    width: 90%;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.horizontal-stack-w-edit-calendar {
+    width: 60%;
+    max-width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.horizontal-stack-w-about {
+    width: 1280px;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 2.6;
+    text-align: justify;
+}
+
+.horizontal-stack-w-home {
+    max-width: 86%;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 2;
+    text-align: justify;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.horizontal-stack-w-searched-ranking {
+    width: 90%;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.horizontal-stack-w-searched-list {
+    width: 90%;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.horizontal-stack-center {
+    flex: 1;
+    text-align: center;
+}
+
+.horizontal-stack-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.horizontal-stack h1 {
+    margin-right: auto;
+    margin-left: auto;
+
+}
+
+.all {
+    text-align: center;
+    width: 326px;
+    min-width: 326px;
+}
+
+.add {
+    text-align: center;
+    width: 223px;
+    min-width: 223px;
+}
+
+.remove {
+    text-align: center;
+    width: 293px;
+    min-width: 293px;
+}
+
+.add-event {
+    text-align: center;
+    width: 410px;
+    min-width: 410px;
+}
+
+.remove-event {
+    text-align: center;
+    width: 527px;
+    min-width: 527px;
+}
+
+.edit-event {
+    text-align: center;
+    width: 242px;
+    min-width: 242px;
+}
+
+.edit-list {
+    text-align: center;
+    width: 358px;
+    min-width: 358px;
+}
+
+.rank {
+    text-align: center;
+    width: 396px;
+    min-width: 396px;
+}
+
+.search-ranking {
+    text-align: center;
+    width: 579px;
+    min-width: 579px;
+}
+
+.searched-ranking {
+    text-align: center;
+    width: 579px;
+    min-width: 579px;
+}
+
+.search-list {
+    text-align: center;
+    width: 559px;
+    min-width: 559px;
+}
+
+.searched-list {
+    text-align: center;
+    width: 360px;
+    min-width: 360px;
+}
+
+.horizontal-stack button {
+    margin-left: 0px;
+}
+
+.backTextL {
+    font-size: 19px;
+    color: white;
+    margin-right: 12.5px;
+    height: 30px;
+}
+
+.backTextR {
+    font-size: 19px;
+    color: white;
+    margin-left: 12.5px;
+    height: 30px;
+}
+
+.button-style {
+    text-decoration: none;
+    color: white;
+}
+
+.button-style:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.button-style .backText {
+    cursor: pointer;
+}
+
+
+.table-center {
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-button {
+    margin-left: 12.5px;
+    margin-right: 5px;
+    margin-top: 7.5px;
+}
+
+.calendar-button  {
+    margin-left: 7.5px;
+    margin-right: 5px;
+}
+
+.edit-text {
+    font-size: 19px;
+    color: white;
+    margin-right: 12.5px;
+    height: 30px;
+}
+
+.calendarButton {
+    border-radius: 5px;
+    width: 115px;
+    margin-left: 65px;
+}
+
+.calendar-text {
+    font-size: 19px;
+    color: white;
+    margin-left: 0px;
+    height: 30px;
+}
+
+.event-text {
+    font-size: 60px;
+    color: white;
+    margin-right: 5px;
+}
+
+.eventButtonL {
+    border-radius: 5px;
+    width: 75px;
+}
+
+.eventButtonR {
+    border-radius: 5px;
+    width: 75px;
+}
+
+.addEventButton {
+    border-radius: 10px;
+    width: 60%;
+    height: 100px;
+}
+
+.removeEventButton {
+    border-radius: 10px;
+    width: 60%;
+    height: 100px;
+}
+
+.dashboardButton {
+    border-radius: 5px;
+    width: 135px;
+}
+
+.listButton {
+    border-radius: 5px;
+    width: 105px;
+}
+
+.rankingButton {
+    border-radius: 5px;
+    width: 115px;
+}
+
+.dashboardTextL {
+    font-size: 19px;
+    color: white;
+    margin-left: 7.5px;
+    height: 30px;
+}
+
+.dashboardTextR {
+    font-size: 19px;
+    color: white;
+    margin-right: 7.5px;
+    height: 30px;
+}
+
+.searchIcon {
+    margin-left: 7.5px;
+}
+
+.searchButton {
+    border-radius: 5px;
+    width: 100px;
+}
+
+.info-table th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.info-table table {
+    border-collapse: collapse;
+    width: 90%;
+}
+
+.meaning-table {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
