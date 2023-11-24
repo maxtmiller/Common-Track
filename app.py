@@ -48,32 +48,6 @@ def before_request():
     return
 
 
-@app.route("/all", methods=["GET"])
-@login_required
-def all():
-    """Show all colleges"""
-
-    user_id = session["user_id"]
-    scrollable = True
-
-    rawcollegelist = db.execute("SELECT Common_App_Member, School_Type, RD_Rolling, US, Personal_Essay_Req_d FROM CollegeList;")
-
-    collegelist = [college for college in rawcollegelist]
-
-    return render_template("all.html", collegelist=collegelist, scrollable=scrollable)
-
-
-@app.route("/")
-@login_required
-def home():
-    """Home Page"""
-
-    user_id = session["user_id"]
-    scrollable = True
-
-    return render_template("home.html", scrollable=scrollable)
-
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in"""
@@ -110,7 +84,7 @@ def login():
 
         # Redirect user to home page
         print("success")
-        return redirect("/#")
+        return redirect("/my")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
@@ -669,6 +643,21 @@ def deadline():
     return deadlines
 
 
+@app.route("/all", methods=["GET"])
+@login_required
+def all():
+    """Show all colleges"""
+
+    user_id = session["user_id"]
+    scrollable = True
+
+    rawcollegelist = db.execute("SELECT Common_App_Member, School_Type, RD_Rolling, US, Personal_Essay_Req_d FROM CollegeList;")
+
+    collegelist = [college for college in rawcollegelist]
+
+    return render_template("all.html", collegelist=collegelist, scrollable=scrollable)
+
+
 @app.route('/ranking', methods=['GET'])
 @login_required
 def ranking():
@@ -700,7 +689,7 @@ def search_ranking():
     user_id = session["user_id"]
     scrollable = False
 
-    rawcollegelist = db.execute("SELECT institution FROM CollegeRanking;")
+    rawcollegelist = db.execute("SELECT institution FROM CollegeRanking ORDER BY institution ASC;")
 
     collegelist = [college for college in rawcollegelist]
 
@@ -738,6 +727,17 @@ def search_ranking():
     else:
 
         return render_template("search_ranking.html", collegelist=collegelist, scrollable=scrollable)
+
+
+@app.route("/breakdown")
+@login_required
+def breakdown():
+    """Breakdown Page"""
+
+    user_id = session["user_id"]
+    scrollable = True
+
+    return render_template("breakdown.html", scrollable=scrollable)
 
 
 @app.route('/about', methods=['GET'])
