@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS CollegeList (
 );
 
 CREATE TABLE IF NOT EXISTS MyCollegeList (
+    user_id INTEGER NOT NULL,
     Common_App_Member TEXT,
     School_Type TEXT,
     ED VARCHAR(19),

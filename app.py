@@ -158,6 +158,12 @@ def logout():
     return redirect("/login")
 
 
+@app.route("/", methods=["GET", "POST"])
+def default():
+
+    return redirect("/login")
+
+
 @app.route("/add", methods=["GET", "POST"])
 @login_required
 def add():
@@ -176,29 +182,26 @@ def add():
 
         print("CollegeName", CollegeName)
 
-        ListCount = db.execute("SELECT COUNT(Common_App_Member) FROM MyCollegeList;")
+        ListCount = db.execute("SELECT COUNT(Common_App_Member) FROM MyCollegeList WHERE user_id = ?;", user_id)
         ListCount = ListCount[0]['COUNT(Common_App_Member)']
 
-        ExistingCollegeCount = db.execute("SELECT COUNT(Common_App_Member) FROM MyCollegeList WHERE Common_App_Member = ?;", CollegeName)
+        ExistingCollegeCount = db.execute("SELECT COUNT(Common_App_Member) FROM MyCollegeList WHERE Common_App_Member = ? AND user_id = ?;", CollegeName, user_id)
         ExistingCollegeCount = ExistingCollegeCount[0]['COUNT(Common_App_Member)']
 
         RawCollegeInfo = db.execute("SELECT * FROM CollegeList WHERE Common_App_Member = ?;", CollegeName)
         RCI = RawCollegeInfo[0]
 
-        CollegeCount = db.execute("SELECT COUNT(Common_App_Member) FROM CollegeList WHERE Common_App_Member = ?;", CollegeName)
-        CollegeCount = CollegeCount[0]['COUNT(Common_App_Member)']
-
         if ExistingCollegeCount == 0 and ListCount < 20:
             flash("College Added!")
-            db.execute("INSERT INTO MyCollegeList (Common_App_Member, School_Type, ED, EDII, EA, EAII, REA, RD_Rolling, US, INTL, Personal_Essay_Req_d, C_G, Portfolio, Writing, Test_Policy, SAT_ACT_Tests_Used, INTL_1, TE, OE, MR, CR, Saves_Forms) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", RCI['Common_App_Member'], RCI['School_Type'], RCI['ED'], RCI['EDII'], RCI['EA'], RCI['EAII'], RCI['REA'], RCI['RD_Rolling'], RCI['US'], RCI['INTL'], RCI['Personal_Essay_Req_d'], RCI['C_G'], RCI['Portfolio'], RCI['Writing'], RCI['Test_Policy'], RCI['SAT_ACT_Tests_Used'], RCI['INTL_1'], RCI['TE'], RCI['OE'], RCI['MR'], RCI['CR'], RCI['Saves_Forms'])
+            db.execute("INSERT INTO MyCollegeList (user_id, Common_App_Member, School_Type, ED, EDII, EA, EAII, REA, RD_Rolling, US, INTL, Personal_Essay_Req_d, C_G, Portfolio, Writing, Test_Policy, SAT_ACT_Tests_Used, INTL_1, TE, OE, MR, CR, Saves_Forms) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", user_id, RCI['Common_App_Member'], RCI['School_Type'], RCI['ED'], RCI['EDII'], RCI['EA'], RCI['EAII'], RCI['REA'], RCI['RD_Rolling'], RCI['US'], RCI['INTL'], RCI['Personal_Essay_Req_d'], RCI['C_G'], RCI['Portfolio'], RCI['Writing'], RCI['Test_Policy'], RCI['SAT_ACT_Tests_Used'], RCI['INTL_1'], RCI['TE'], RCI['OE'], RCI['MR'], RCI['CR'], RCI['Saves_Forms'])
         elif ListCount >= 20:
             flash("College list at capacity!")
         elif ExistingCollegeCount != 0:
             flash("College already in list!")
 
-        RawCollegeInfo = db.execute("SELECT * FROM MyCollegeList;")
+        RawCollegeInfo = db.execute("SELECT * FROM MyCollegeList WHERE user_id = ?;", user_id)
 
-        CollegeCount = db.execute("SELECT COUNT(Common_App_Member) FROM MyCollegeList;")
+        CollegeCount = db.execute("SELECT COUNT(Common_App_Member) FROM MyCollegeList WHERE user_id = ?;", user_id)
         CollegeCount = CollegeCount[0]['COUNT(Common_App_Member)']
 
         CollegeInfo = [college for college in RawCollegeInfo]
@@ -230,7 +233,7 @@ def remove():
     user_id = session["user_id"]
     scrollable = False
 
-    rawcollegelist = db.execute("SELECT Common_App_Member FROM MyCollegeList ORDER BY Common_App_Member ASC;")
+    rawcollegelist = db.execute("SELECT Common_App_Member FROM MyCollegeList WHERE user_id = ? ORDER BY Common_App_Member ASC;", user_id)
 
     collegelist = [college for college in rawcollegelist]
 
@@ -238,11 +241,11 @@ def remove():
 
         CollegeName = request.form.get("collegeSelect")
 
-        db.execute("DELETE FROM MyCollegeList WHERE Common_App_Member = ?;", CollegeName)
+        db.execute("DELETE FROM MyCollegeList WHERE Common_App_Member = ? AND user_id = ?;", CollegeName, user_id)
 
         flash("College Removed!")
 
-        RawCollegeInfo = db.execute("SELECT * FROM MyCollegeList ORDER BY Common_App_Member ASC;")
+        RawCollegeInfo = db.execute("SELECT * FROM MyCollegeList WHERE user_id = ? ORDER BY Common_App_Member ASC;", user_id)
 
         CollegeInfo = [college for college in RawCollegeInfo]
 
@@ -289,7 +292,7 @@ def search():
         results = db.execute("SELECT * FROM CollegeList WHERE Common_App_Member LIKE ? OR Common_App_Member LIKE ? OR Common_App_Member LIKE ? ORDER BY Common_App_Member ASC;", (search_term + '%'), ('%' + search_term + '%'), (search_term + '%',))
 
     elif currentEndpoint == "remove":
-        results = db.execute("SELECT * FROM MyCollegeList WHERE Common_App_Member LIKE ? OR Common_App_Member LIKE ? OR Common_App_Member LIKE ? ORDER BY Common_App_Member ASC;", (search_term + '%'), ('%' + search_term + '%'), (search_term + '%',))
+        results = db.execute("SELECT * FROM MyCollegeList WHERE user_id = ? AND Common_App_Member LIKE ? OR Common_App_Member LIKE ? OR Common_App_Member LIKE ? ORDER BY Common_App_Member ASC;", user_id, (search_term + '%'), ('%' + search_term + '%'), (search_term + '%',))
 
     elif currentEndpoint == "calendar":
         resList = db.execute("SELECT * FROM CollegeList WHERE Common_App_Member LIKE ? OR Common_App_Member LIKE ? OR Common_App_Member LIKE ? ORDER BY Common_App_Member ASC;", (search_term + '%'), ('%' + search_term + '%'), (search_term + '%',))
@@ -305,9 +308,6 @@ def search():
 
         for i in range(0, len(resList)):
             print("Looping", i, resList[i]['Common_App_Member'])
-
-    elif currentEndpoint == "add_event":
-        results = db.execute("SELECT * FROM MyCollegeList WHERE Common_App_Member LIKE ? OR Common_App_Member LIKE ? OR Common_App_Member LIKE ? ORDER BY Common_App_Member ASC;", (search_term + '%'), ('%' + search_term + '%'), (search_term + '%',))
 
     elif currentEndpoint == "search_ranking":
         results = db.execute("SELECT * FROM CollegeRanking WHERE institution LIKE ? OR institution LIKE ? OR institution LIKE ? ORDER BY institution ASC;", (search_term + '%'), ('%' + search_term + '%'), (search_term + '%',))
@@ -391,9 +391,9 @@ def my():
     scrollable = True
     short = False
 
-    RawCollegeInfo = db.execute("SELECT * FROM MyCollegeList ORDER BY Common_App_Member ASC;")
+    RawCollegeInfo = db.execute("SELECT * FROM MyCollegeList WHERE user_id = ? ORDER BY Common_App_Member ASC;", user_id)
 
-    CollegeCount = db.execute("SELECT COUNT(Common_App_Member) FROM MyCollegeList;")
+    CollegeCount = db.execute("SELECT COUNT(Common_App_Member) FROM MyCollegeList WHERE user_id = ?;", user_id)
     CollegeCount = CollegeCount[0]['COUNT(Common_App_Member)']
 
     CollegeInfo = [college for college in RawCollegeInfo]
@@ -444,7 +444,7 @@ def add_event():
     scrollable = False
     noDate = False
 
-    rawcollegelist = db.execute("SELECT Common_App_Member, School_Type, RD_Rolling, US, Personal_Essay_Req_d FROM MyCollegeList ORDER BY Common_App_Member ASC;")
+    rawcollegelist = db.execute("SELECT Common_App_Member, School_Type, RD_Rolling, US, Personal_Essay_Req_d FROM MyCollegeList WHERE user_id = ? ORDER BY Common_App_Member ASC;", user_id)
 
     collegelist = [college for college in rawcollegelist]
 
