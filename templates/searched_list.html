@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Specfic College Info
+{% endblock %}
+
+{% block main %}
+    <div class="horizontal-stack horizontal-stack-w-searched-list">
+        <button class="fbtn btn-primary backButtonL button-style" onclick="back()">
+            <div class="horizontal-stack-inner">
+                <span onclick="open_select(this)" class="icon_select_mate" data-n-select="0" style="transform: rotate(90deg);">
+                    <svg fill="#fff" height="30" viewBox="0 0 24 24" width="30" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"></path>
+                        <path d="M0-.75h24v24H0z" fill="none"></path>
+                    </svg>
+                </span>
+                <a class="backTextL button-style">Back</a>
+            </div>
+        </button>
+        <div class="horizontal-stack-center">
+            <h1 class="searched-list">Specfic College Info</h1>
+        </div>
+        <button class="fbtn btn-primary listButton button-style" onclick="list()">
+            <div class="horizontal-stack-inner">
+                <a class="dashboardTextR button-style">Full List</a>
+                <i class="fa-solid fa-list" style="color: #ffffff;"></i>
+            </div>
+        </button>
+    </div>
+    <br>
+    <div class="table-center">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Institution Name</th>
+                    <th>RD Deadline</th>
+                    <th>US Fee</th>
+                    <th>International Fee</th>
+                    <th>Common App Essay</th>
+                    <th>Test Policy</th>
+                    <th>Teacher Rec.</th>
+                    <th>Other Rec.</th>
+                    <th>Counsellor Rec.</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for college in CollegeInfo %}
+                    <tr>
+                        <td> {{ college["Common_App_Member"] }} </td>
+                        <td> {{ college["RD_Rolling"] }} </td>
+                        <td> {{ college["US"] }} </td>
+                        <td> {{ college["INTL"] }} </td>
+                        <td> {{ college["Personal_Essay_Req_d"] }} </td>
+                        <td> {{ college["Test_Policy"] }} </td>
+                        <td> {{ college["TE"] }} </td>
+                        <td> {{ college["OE"] }} </td>
+                        <td> {{ college["CR"] }} </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a>Data by</a>
+    <a href="https://www.commonapp.org/">Common App</a>
+    <script>
+        function back() {
+            location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/'))+"/search_list";
+        }
+
+        function list() {
+            location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/'))+"/all";
+        }
+    </script>
+{% endblock %}

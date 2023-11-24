@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Viewed Colleges
+{% endblock %}
+
+{% block main %}
+    <div class="horizontal-stack horizontal-stack-w-searched-ranking">
+        <button class="fbtn btn-primary backButtonL button-style" onclick="back()">
+            <div class="horizontal-stack-inner">
+                <span onclick="open_select(this)" class="icon_select_mate" data-n-select="0" style="transform: rotate(90deg);">
+                    <svg fill="#fff" height="30" viewBox="0 0 24 24" width="30" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"></path>
+                        <path d="M0-.75h24v24H0z" fill="none"></path>
+                    </svg>
+                </span>
+                <a class="backTextL button-style">Back</a>
+            </div>
+        </button>
+        <div class="horizontal-stack-center">
+            <h1 class="searched-ranking">Specfic College Ranking Info</h1>
+        </div>
+        <button class="fbtn btn-primary rankingButton button-style" onclick="ranking()">
+            <div class="horizontal-stack-inner">
+                <a class="dashboardTextR button-style">Ranking</a>
+                <i class="fa-solid fa-ranking-star" style="color: #ffffff;"></i>
+            </div>
+        </button>
+    </div>
+    <br>
+    <div class="table-center">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>2024 QS World Rank</th>
+                    <th>Institution Name</th>
+                    <th>Size</th>
+                    <th>Type</th>
+                    <th>Academic Reputation</th>
+                    <th>Employer Reputation</th>
+                    <th>Faculty per Student</th>
+                    <th>Citations Per Faculty</th>
+                    <th>International Faculty</th>
+                    <th>International Students</th>
+                    <th>International Research Network</th>
+                    <th>Graduate Employment Rate</th>
+                    <th>Sustainability</th>
+                    <th>Overall</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for college in CollegeInfo %}
+                    <tr>
+                        <td> {{ college["rank_display_2024"] }} </td>
+                        <td> {{ college["institution"] }} </td>
+                        <td> {{ college["size"] }} </td>
+                        <td> {{ college["status"] }} </td>
+                        <td> {{ college["ar_score"] }} </td>
+                        <td> {{ college["er_score"] }} </td>
+                        <td> {{ college["fsr_score"] }} </td>
+                        <td> {{ college["cpf_score"] }} </td>
+                        <td> {{ college["ifr_score"] }} </td>
+                        <td> {{ college["isr_score"] }} </td>
+                        <td> {{ college["irn_score"] }} </td>
+                        <td> {{ college["ger_score"] }} </td>
+                        <td> {{ college["sus_score"] }} </td>
+                        <td> {{ college["overall_score"] }} </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a>Data by</a>
+    <a href="https://www.topuniversities.com/v2">QS</a>
+    <script>
+        function back() {
+            location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/'))+"/search_ranking";
+        }
+
+        function ranking() {
+            location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/'))+"/ranking";
+        }
+    </script>
+{% endblock %}

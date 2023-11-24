@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search for College Ranking Info
+{% endblock %}
+
+{% block main %}
+    <div class="horizontal-stack horizontal-stack-w">
+        <button class="fbtn btn-primary backButtonL button-style" onclick="back()">
+            <div class="horizontal-stack-inner">
+                <span onclick="open_select(this)" class="icon_select_mate" data-n-select="0" style="transform: rotate(90deg);">
+                    <svg fill="#fff" height="30" viewBox="0 0 24 24" width="30" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"></path>
+                        <path d="M0-.75h24v24H0z" fill="none"></path>
+                    </svg>
+                </span>
+                <a class="backTextL button-style">Back</a>
+            </div>
+        </button>
+        <div class="horizontal-stack-center">
+            <h1 class="search-ranking">Search for College Ranking Info</h1>
+        </div>
+        <button class="fbtn btn-primary rankingButton button-style" onclick="ranking()">
+            <div class="horizontal-stack-inner">
+                <a class="dashboardTextR button-style">Ranking</a>
+                <i class="fa-solid fa-ranking-star" style="color: #ffffff;"></i>
+            </div>
+        </button>
+    </div>
+    <br>
+    <form action="/search_ranking" method="post" onsubmit="return validSelection()">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-fit" type="text" id="searchInput" placeholder="Search for a college...">
+        <br>
+        <select class="form-contro mx-auto w-fit" id="collegeSelect" name="collegeSelect">
+            <option disabled selected value="select">--Select College--</option>
+            {% for college in collegelist %}
+                <option value="{{ college['institution'] }}">{{ college["institution"] }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <button class="fbtn btn-primary mx-auto loginButton" type="submit">Search</button>
+    </form>
+    <a id="errorMessage" style="margin-top: 10px;">Please Select College</a>
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const currentEndpoint = window.location.pathname.split('/').pop();
+
+        searchInput.addEventListener('input', function () {
+            const searchTerm = this.value;
+
+            fetch('/search', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ searchTerm, currentEndpoint }),
+            })
+            .then(response => response.json())
+            .then(results => {
+                populateSelect(results);
+            });
+        });
+
+        function populateSelect(results) {
+
+            collegeSelect.innerHTML = '';
+
+            results.forEach(result => {
+                const option = document.createElement('option');
+                option.textContent = result.institution;
+                option.value = result.institution;
+                collegeSelect.appendChild(option);
+            });
+        }
+
+        function validSelection() {
+            var selectedValue = document.getElementById("collegeSelect").value;
+
+            if (selectedValue === "select") {
+                showErrorMessage();
+                return false;
+            }
+
+            return true;
+        }
+
+        function showErrorMessage() {
+            var errorMessage = document.getElementById('errorMessage');
+
+            errorMessage.style.display = "block";
+        }
+
+        function back() {
+            location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/'))+"/ranking";
+        }
+
+        function ranking() {
+            location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/'))+"/ranking";
+        }
+    </script>
+{% endblock %}

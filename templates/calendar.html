@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    College Calendar
+{% endblock %}
+
+{% block main %}
+    <div class="horizontal-stack horizontal-stack-w-calendar">
+        <button class="fbtn btn-primary backButtonL button-style" onclick="back()">
+            <div class="horizontal-stack-inner">
+                <span onclick="open_select(this)" class="icon_select_mate" data-n-select="0" style="transform: rotate(90deg);">
+                    <svg fill="#fff" height="30" width="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"></path>
+                        <path d="M0-.75h24v24H0z" fill="none"></path>
+                    </svg>
+                </span>
+                <a class="backTextL button-style">Back</a>
+            </div>
+        </button>
+        <div class="horizontal-stack-center">
+            <h1 class="calendar">College Deadline Calendar</h1>
+        </div>
+        <button class="fbtn btn-primary eventButtonR button-style" onclick="edit()">
+            <div class="horizontal-stack-inner">
+                <i class="fas fa-edit edit-icon edit-button" style="width: 25px; height: 25px;"></i>
+                <a class="edit-text button-style">Edit</a>
+            </div>
+        </button>
+    </div>
+    <br>
+    <iframe src={{calendarId}} title="College Deadlines" style="border: 0;" width="45%" height="700" frameborder="0" scrolling="no"></iframe>
+    <br>
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const currentEndpoint = window.location.pathname.split('/').pop();
+
+        searchInput.addEventListener('input', function () {
+            const searchTerm = this.value;
+
+            fetch('/search', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ searchTerm, currentEndpoint }),
+            })
+            .then(response => response.json())
+            .then(results => {
+                populateSelect(results);
+            });
+        });
+
+        function populateSelect(results) {
+
+            collegeSelect.innerHTML = '';
+
+            results.forEach(result => {
+                const option = document.createElement('option');
+                option.textContent = result.Common_App_Member;
+                option.value = result.Common_App_Member;
+                collegeSelect.appendChild(option);
+            });
+        }
+
+        function back() {
+            location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/'))+"/my";
+        }
+        
+        function edit() {
+            location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/'))+"/edit_event";
+        }
+    </script>
+{% endblock %}

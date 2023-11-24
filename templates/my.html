@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My Colleges
+{% endblock %}
+
+{% block main %}
+    <div class="horizontal-stack horizontal-stack-w-my">
+        <button class="fbtn btn-primary eventButtonL button-style" onclick="edit()">
+            <div class="horizontal-stack-inner">
+                <i class="fas fa-edit edit-icon edit-button" style="width: 25px; height: 25px;"></i>
+                <a class="edit-text button-style">Edit</a>
+            </div>
+        </button>
+
+        <div class="horizontal-stack-center">
+            <h1 class="remove">My College List</h1>
+        </div>
+
+        <button class="fbtn btn-primary calendarButton button-style" onclick="calendar()">
+            <div class="horizontal-stack-inner">
+                <a class="calendar-text button-style">Calendar</a>
+                <i class="fas fa-calendar-alt calendar-icon calendar-button"></i>
+            </div>
+        </button>
+    </div>
+    <br>
+    <div class="table-center">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>2024 QS World Rank</th>
+                    <th>Institution Name</th>
+                    <th>Size</th>
+                    <th>Type</th>
+                    <th>RD Deadline</th>
+                    <th>US Fee</th>
+                    <th>International Fee</th>
+                    <th>Common App Essay</th>
+                    <th>Test Policy</th>
+                    <th>Teacher Recommendation</th>
+                    <th>Other Recommendation</th>
+                    <th>Counsellor Recommendation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for college in CollegeInfo %}
+                    <tr>
+                        <td> {{ college["rank_display_2024"] }} </td>
+                        <td> {{ college["Common_App_Member"] }} </td>
+                        <td> {{ college["size"] }} </td>
+                        <td> {{ college["status"] }} </td>
+                        <td> {{ college["RD_Rolling"] }} </td>
+                        <td> {{ college["US"] }} </td>
+                        <td> {{ college["INTL"] }} </td>
+                        <td> {{ college["Personal_Essay_Req_d"] }} </td>
+                        <td> {{ college["Test_Policy"] }} </td>
+                        <td> {{ college["TE"] }} </td>
+                        <td> {{ college["OE"] }} </td>
+                        <td> {{ college["CR"] }} </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="table-center">
+        <table style="width: 90%; margin-top: -7px;">
+            <tbody>
+                <tr style="border-bottom: none;">
+                    {% for _ in range(210) %}
+                        <th style="border: none"></td>
+                    {% endfor %}
+                    <td style="border-top: 1px solid #ddd; width: 11.6%; margin: 10px;"><strong> {{ CollegeCount }} / 20 </strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function edit() {
+            location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/'))+"/edit_list";
+        }
+        function calendar() {
+            location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/'))+"/calendar";
+        }
+    </script>
+{% endblock %}

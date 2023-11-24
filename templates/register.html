@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <div id="startBorder">
+        <br>
+        <h1>Sign Up</h1>
+        <br>
+        <form action="/register" method="post">
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-fit" id="username" name="username" placeholder="Set Username" type="text">
+            </div>
+            <div class="mb-3">
+                <input class="form-control mx-auto w-fit" id="password" name="password" placeholder="Set Password" type="password">
+            </div>
+            <div class="mb-3">
+                <input class="form-control mx-auto w-fit" id="confirmation" name="confirmation" placeholder="Re-Enter Password" type="password">
+            </div>
+            {% if error %}
+                <a id="badEvent">{{error}}</a>
+            {% endif %}
+            <button class="btn btn-primary loginButton msgSpace" type="submit">Register</button>
+            <div class="loginSep mx-auto">
+                <hr id="line">
+                <div class="orDiv">
+                    <a class="or buttonDisabled">OR</a>
+                </div>
+                <hr id ="line">
+            </div>
+            <a class="signButton" href="/login">Log In</a>
+        </form>
+        <br>
+    </div>
+{% endblock %}

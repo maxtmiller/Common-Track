@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Event to Calendar
+{% endblock %}
+
+{% block main %}
+    <div class="horizontal-stack horizontal-stack-w">
+        <button class="fbtn btn-primary backButtonL button-style" onclick="back()">
+            <div class="horizontal-stack-inner">
+                <span onclick="open_select(this)" class="icon_select_mate" data-n-select="0" style="transform: rotate(90deg);">
+                    <svg fill="#fff" height="30" width="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"></path>
+                        <path d="M0-.75h24v24H0z" fill="none"></path>
+                    </svg>
+                </span>
+                <a class="backTextL button-style">Back</a>
+            </div>
+        </button>
+        <div class="horizontal-stack-center">
+            <h1 class="add-event">Add Event to Calendar</h1>
+        </div>
+        <button class="fbtn btn-primary dashboardButton button-style" onclick="my()">
+            <div class="horizontal-stack-inner">
+                <a class="dashboardTextR button-style">Dashboard</a>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="20" height="20">
+                    <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" fill="white"/>
+                </svg>
+            </div>
+        </button>
+    </div>
+    <br>
+    <form action="/add_event" method="post" onsubmit="return validSelection()">
+        <select class="form-contro mx-auto w-fit" id="collegeSelect" name="college">
+            <option disabled selected value="select">--Select College--</option>
+            {% for college in collegelist %}
+                <option value="{{ college['Common_App_Member'] }}">{{ college["Common_App_Member"] }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <div id="deadlineSect">
+            <select class="form-contro mx-auto w-fit" id="deadlineSelect" name="deadline">
+                <option value="">--Select Deadline--</option>
+            </select>
+            <br>
+        </div>
+        <button class="fbtn btn-primary mx-auto loginButton" type="submit">Add</button>
+    </form>
+    <a id="errorMessage" style="margin-top: 10px;">Please Select College</a>
+    <script>
+        const selectionInput = document.getElementById('collegeSelect');
+        const currentEndpoint = window.location.pathname.split('/').pop();
+
+        collegeSelect.addEventListener('input', function () {
+            const selectedTerm = this.value;
+
+            fetch('/deadline', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ selectedTerm, currentEndpoint }),
+            })
+            .then(response => response.json())
+            .then(results => {
+                populateDeadlineSelect(results);
+                showDeadlineSelect()
+            });
+        });
+
+        function populateDeadlineSelect(results) {
+
+            deadlineSelect.innerHTML = '';
+
+            results.forEach(result => {
+                const option = document.createElement('option');
+                option.textContent = result.key;
+                option.value = result.key;
+                deadlineSelect.appendChild(option);
+            });
+        }
+
+        function showDeadlineSelect() {
+            var deadlineSelect = document.getElementById('deadlineSect');
+
+            deadlineSelect.style.display = "block";
+        }
+
+        function validSelection() {
+            var selectedValue = document.getElementById("collegeSelect").value;
+
+            if (selectedValue === "select") {
+                showErrorMessage();
+                return false;
+            }
+
+            return true;
+        }
+
+        function showErrorMessage() {
+            var errorMessage = document.getElementById('errorMessage');
+
+            errorMessage.style.display = "block";
+        }
+
+        function back() {
+            location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/'))+"/edit_event";
+        }
+
+        function my() {
+            location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/'))+"/my";
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit Event from Calendar
+{% endblock %}
+
+{% block main %}
+    <div class="horizontal-stack horizontal-stack-w-edit-calendar">
+        <button class="fbtn btn-primary backButtonL button-style" onclick="back()">
+            <div class="horizontal-stack-inner">
+                <span onclick="open_select(this)" class="icon_select_mate" data-n-select="0" style="transform: rotate(90deg);">
+                    <svg fill="#fff" height="30" viewBox="0 0 24 24" width="30" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"></path>
+                        <path d="M0-.75h24v24H0z" fill="none"></path>
+                    </svg>
+                </span>
+                <a class="backTextL button-style">Back</a>
+            </div>
+        </button>
+        <div class="horizontal-stack-center">
+            <h1 class="edit-event">Edit Calendar</h1>
+        </div>
+        <button class="fbtn btn-primary dashboardButton button-style" onclick="my()">
+            <div class="horizontal-stack-inner">
+                <a class="dashboardTextR button-style">Dashboard</a>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="20" height="20">
+                    <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" fill="white"/>
+                </svg>
+            </div>
+        </button>
+    </div>
+    <br>
+    <div style="margin-bottom: 50px;"></div>
+    <button class="fbtn btn-primary addEventButton button-style" onclick="add()">
+        <span onclick="open_select(this)" class="icon_select_mate" data-n-select="0" style="transform: rotate(0deg);">
+            <svg xmlns="http://www.w3.org/2000/svg" height="75" width="75" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 10px; margin-right: 10px; margin-bottom: 3px;">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span>
+        <!-- <a class="event-text button-style">Add Event</a>
+        <span onclick="open_select(this)" class="icon_select_mate" data-n-select="0" style="transform: rotate(0deg);">
+            <svg xmlns="http://www.w3.org/2000/svg" height="75" width="75" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 10px; margin-right: 10px; margin-bottom: 3px;">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span> -->
+    </button>
+    <div style="margin-bottom: 50px;"></div>
+    <button class="fbtn btn-primary removeEventButton button-style" onclick="remove()">
+        <span onclick="open_select(this)" class="icon_select_mate" data-n-select="0" style="transform: rotate(0deg);">
+            <svg xmlns="http://www.w3.org/2000/svg" height="75" width="75" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 10px; margin-right: 10px; margin-bottom: 3px;">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        <!-- </span>
+        <a class="event-text button-style">Remove Event</a>
+        <span onclick="open_select(this)" class="icon_select_mate" data-n-select="0" style="transform: rotate(0deg);">
+            <svg xmlns="http://www.w3.org/2000/svg" height="75" width="75" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 10px; margin-right: 10px; margin-bottom: 3px;">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </span> -->
+    </button>
+    <script>
+        function back() {
+            location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/'))+"/calendar";
+        }
+        function add() {
+            location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/'))+"/add_event";
+        }
+        function remove() {
+            location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/'))+"/remove_event";
+        }
+        function my() {
+            location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/'))+"/my";
+        }
+    </script>
+{% endblock %}

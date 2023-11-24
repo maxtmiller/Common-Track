@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    College Ranking
+{% endblock %}
+
+{% block main %}
+    <div class="horizontal-stack horizontal-stack-w-my">
+        <button class="fbtn btn-primary dashboardButton button-style" onclick="my()">
+            <div class="horizontal-stack-inner">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="25" height="25">
+                    <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" fill="white"/>
+                </svg>
+                <a class="dashboardTextL button-style">Dashboard</a>
+            </div>
+        </button>
+
+        <div class="horizontal-stack-center">
+            <h1 class="rank">2024 College Ranking</h1>
+        </div>
+
+        <button class="fbtn btn-primary searchButton button-style" onclick="search()">
+            <div class="horizontal-stack-inner">
+                <a class="calendar-text button-style">Search</a>
+                <i class="fa-solid fa-magnifying-glass searchIcon" style="color: #ffffff;"></i>
+            </div>
+        </button>
+    </div>
+    <br>
+    <div class="table-center">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>2024 QS World Rank</th>
+                    <th>Institution Name</th>
+                    <th>Size</th>
+                    <th>Subject Range</th>
+                    <th>Research</th>
+                    <th>Type</th>
+                    <th>Overall Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for college in CollegeRank %}
+                <tr>
+                    <td> {{ college["rank_display_2024"] }} </td>
+                    <td> {{ college["institution"] }} </td>
+                    <td> {{ college["size"] }} </td>
+                    <td> {{ college["focus"] }} </td>
+                    <td> {{ college["research"] }} </td>
+                    <td> {{ college["status"] }} </td>
+                    <td> {{ college["overall_score"] }} </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a>Data by</a>
+    <a href="https://www.topuniversities.com/v2">QS</a>
+    <script>
+        function search() {
+            location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/'))+"/search_ranking";
+        }
+        function my() {
+            location.href = window.location.href.substring(0, window.location.href.lastIndexOf('/'))+"/my";
+        }
+    </script>
+{% endblock %}
