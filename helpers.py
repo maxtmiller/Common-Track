@@ -1,5 +1,6 @@
 import datetime
 import os
+import json
 
 from cs50 import SQL
 from flask import redirect, session, request, current_app
@@ -111,13 +112,25 @@ def authentication():
     creds = None
 
     if os.path.exists('token.json'):
+        # with open('token.json', 'r') as file:
+        #     data = json.load(file)
+        # expiry_string = data.get('expiry', '')
+        # expiry_datetime = datetime.fromisoformat(expiry_string[:-1])
+        # print("expiry_datetime", expiry_datetime)
+        # print("datetime.now()", datetime.now())
+        # if expiry_datetime < datetime.now():
+        #     print("true")
+        #     os.remove('token.json')
+        #     creds = None
+        # else:
+        #     creds = Credentials.from_authorized_user_file('token.json')
         creds = Credentials.from_authorized_user_file('token.json')
 
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            flow = InstalledAppFlow.from_client_secrets_file('/workspaces/67687590/final/static/credentials.json', SCOPES)
+            flow = InstalledAppFlow.from_client_secrets_file('static\credentials.json', SCOPES)
             creds = flow.run_local_server(port=0)
 
         with open('token.json', 'w') as token:
