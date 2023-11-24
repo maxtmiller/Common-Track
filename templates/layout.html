@@ -26,10 +26,10 @@
                 </a>
                 {% if session["user_id"] %}
                     <ul class="nav navbar-nav">
-                        <li class="nav-item {% if request.path == '/' %}active{% endif %}"><a disabled id="p1" class="nav-link" href="/#">Home</a></li>
                         <li class="nav-item {% if request.path == '/my' or request.path == '/edit_list' or request.path == '/add' or request.path == '/remove' or request.path == '/calendar' or request.path == '/edit_event' or request.path == '/add_event' or request.path == '/remove_event' %}active{% endif %}"><a id="p4" class="nav-link" href="/my">My College List</a></li>
                         <li class="nav-item {% if request.path == '/all' or request.path == '/search_list' or request.path == '/searched_list' %}active{% endif %}"><a id="p2" class="nav-link" href="/all">Common App List</a></li>
                         <li class="nav-item {% if request.path == '/ranking' or request.path == '/search_ranking' or request.path == '/searched_ranking' %}active{% endif %}"><a id="p5" class="nav-link" href="/ranking">QS Rankings</a></li>
+                        <li class="nav-item {% if request.path == '/breakdown' %}active{% endif %}"><a disabled id="p1" class="nav-link" href="/breakdown">Breakdown</a></li>
                         <li class="nav-item {% if request.path == '/about' %}active{% endif %}"><a id="p5" class="nav-link" href="/about">About</a></li>
                     </ul>
                     <a class="nav-log" href="/logout">
