@@ -63,6 +63,7 @@
             })
             .then(response => response.json())
             .then(results => {
+                console.log(results)
                 populateDeadlineSelect(results);
                 showDeadlineSelect()
             });
