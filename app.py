@@ -284,19 +284,23 @@ def search():
     """Searching"""
 
     user_id = session["user_id"]
+    print(user_id)
 
     search_term = request.json['searchTerm']
     currentEndpoint = request.json['currentEndpoint']
 
     if currentEndpoint == "add":
         results = db.execute("SELECT * FROM CollegeList WHERE Common_App_Member LIKE ? OR Common_App_Member LIKE ? OR Common_App_Member LIKE ? ORDER BY Common_App_Member ASC;", (search_term + '%'), ('%' + search_term + '%'), (search_term + '%',))
+        print("add")
 
     elif currentEndpoint == "remove":
-        results = db.execute("SELECT * FROM MyCollegeList WHERE user_id = ? AND Common_App_Member LIKE ? OR Common_App_Member LIKE ? OR Common_App_Member LIKE ? ORDER BY Common_App_Member ASC;", user_id, (search_term + '%'), ('%' + search_term + '%'), (search_term + '%',))
+        results = db.execute("SELECT * FROM MyCollegeList WHERE user_id = ? AND (Common_App_Member LIKE ? OR Common_App_Member LIKE ? OR Common_App_Member LIKE ?) ORDER BY Common_App_Member ASC;", user_id, (search_term + '%'), ('%' + search_term + '%'), (search_term + '%',))
+        print("remove")
 
     elif currentEndpoint == "calendar":
         resList = db.execute("SELECT * FROM CollegeList WHERE Common_App_Member LIKE ? OR Common_App_Member LIKE ? OR Common_App_Member LIKE ? ORDER BY Common_App_Member ASC;", (search_term + '%'), ('%' + search_term + '%'), (search_term + '%',))
         results = []
+        print("calendar")
 
         service = authentication()
         calendarId = check_for_calendar(service)
@@ -311,12 +315,15 @@ def search():
 
     elif currentEndpoint == "search_ranking":
         results = db.execute("SELECT * FROM CollegeRanking WHERE institution LIKE ? OR institution LIKE ? OR institution LIKE ? ORDER BY institution ASC;", (search_term + '%'), ('%' + search_term + '%'), (search_term + '%',))
+        print("ranking")
 
     elif currentEndpoint == "search_list":
         results = db.execute("SELECT * FROM CollegeList WHERE Common_App_Member LIKE ? OR Common_App_Member LIKE ? OR Common_App_Member LIKE ? ORDER BY Common_App_Member ASC;", (search_term + '%'), ('%' + search_term + '%'), (search_term + '%',))
+        print("list")
 
     else:
         results = None
+        print("else")
 
     return results
 
@@ -388,8 +395,8 @@ def my():
     """View different Coleges"""
 
     user_id = session["user_id"]
-    scrollable = True
-    short = False
+    scrollable = False
+    short = True
 
     RawCollegeInfo = db.execute("SELECT * FROM MyCollegeList WHERE user_id = ? ORDER BY Common_App_Member ASC;", user_id)
 
