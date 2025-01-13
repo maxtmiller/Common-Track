@@ -1,6 +1,6 @@
 # CommonTrack
 
-Common App Organizer is my final project for CS50, created to help students who are applying to colleges by providing lots of information about each college that is part of the common app in an easy to understand manner, such as ranking, size, type, deadlines, test policy, recommendations and more.
+CommonTrack was created to help students who are applying to colleges by providing lots of information about each college that is part of the common app in an easy to understand manner, such as ranking, size, type, deadlines, test policy, recommendations and more.
 
 I decided to use a similar framework to the finance practice set, using python for the backend with the flask framework. This is because it was relatively simple to understand and I could use a similar login and register functionality. It was very useful that I could create a different route for each functionality, from creating an event on calendar to searching for a college in the list, as it helped keep the code organized and focused.
 
