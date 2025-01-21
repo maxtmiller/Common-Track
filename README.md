@@ -1,7 +1,7 @@
 # CommonTrack
 
 ## 📚 Introduction  📚
-**CommonTrack** was created to assist students applying to colleges by providing detailed, easy-to-understand information about each college on the Common App. Key details include ranking, size, type, deadlines, test policy, recommendations, and more.
+**CommonTrack** was created to assist students applying to colleges by providing detailed, easy-to-understand information about each college on the Common App. Key details include ranking, size, type, deadlines, test policy, and recommendations.
 
 ---
 
@@ -23,8 +23,8 @@
    - Includes detailed scores for criteria like sustainability, reputation, research, and international faculty.  
 
 5. **About Section**  
-   - Describes the website's purpose in detail.  
-   - Shares the creator's motivation and inspiration for developing the app.  
+   - Describe the website's purpose in detail.  
+   - Share the creator's motivation and inspiration for developing the app.  
 
 ---
 
