@@ -1,11 +1,11 @@
 # CommonTrack
 
-## 📚 Introduction  📚
+## 📚 &nbsp;&nbsp;&nbsp;**Introduction**&nbsp;&nbsp;&nbsp;  📚
 **CommonTrack** was created to assist students applying to colleges by providing detailed, easy-to-understand information about each college on the Common App. Key details include ranking, size, type, deadlines, test policy, and recommendations.
 
 ---
 
-## 🎨 Features 🎨
+## 🎨 &nbsp;&nbsp;&nbsp;**Features**&nbsp;&nbsp;&nbsp; 🎨
 1. **Home Page**  
    - Explains the website’s purpose.  
    - Provides details on ranking criteria and abbreviation meanings.  
@@ -28,7 +28,7 @@
 
 ---
 
-## 🛠️ Technology & Frameworks 🛠️
+## 🛠️ &nbsp;&nbsp;&nbsp;**Technology & Frameworks**&nbsp;&nbsp;&nbsp; 🛠️
 - The backend is developed in **Python** using the **Flask framework**, chosen for its simplicity and ease of organizing routes for various functionalities.  
 - Key libraries include:  
   - **CS50 SQL** for simplified database operations.  
@@ -38,6 +38,5 @@
 
 ---
 
-
-## 🚀 Motivation 🚀
+## 🚀 &nbsp;&nbsp;&nbsp;**Motivation**&nbsp;&nbsp;&nbsp; 🚀
 The idea for CommonTrack was inspired by personal challenges experienced while applying to colleges. By streamlining the process and offering an organized way to manage deadlines and critical information, the app aims to simplify and enhance the college application experience for students.
