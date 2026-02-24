@@ -23,7 +23,7 @@
 
 ---
 
-## Technical Overview
+## Tech Stack
 
 * **Backend:** Python, Flask
 * **Database:** CS50 SQL for managing college and user data
@@ -33,13 +33,13 @@
 
 ---
 
-## Setup
+## Local Setup
 
 1. Clone the repository:
 
    ```bash
-   git clone <repository-url>
-   cd CommonTrack
+   git clone https://github.com/maxtmiller/Common-Track.git
+   cd Common-Track
    ```
 2. Create and activate a virtual environment:
 
